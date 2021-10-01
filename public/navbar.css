@@ -1,0 +1,122 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'Hanged\ Letters';
+    src: url(Hanged\ Letters.ttf);
+}
+@font-face {
+    font-family: 'Cute\ Notes';
+    src: url(Cute\ Notes.ttf);
+}
+@font-face {
+    font-family: 'K26ToyBlocks123';
+    src: url(K26ToyBlocks123.ttf);
+}
+.navbar{
+    width: 100%;
+}
+.nav-container li{
+    list-style: none;
+}
+.nav-items{
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: brown;
+    padding: .5rem;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+#hanged{
+    font-family: 'Hanged\ Letters'!important;
+}
+.nav-items:hover{
+    text-decoration: none;
+    cursor: pointer;
+    transition: .5s;
+    color: green;
+}
+.logo{
+    font-size: 1.5rem;
+    font-family: 'K26ToyBlocks123';
+}
+#toggle{
+    float: right;
+    width: 45px;
+    height: 45px;
+    background: #ffc107;
+    /* background: transparent; */
+    border: 1px inset rgb(238, 220, 220);
+    border-radius: .5rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#toggle.cross{
+    background: #2196f3;
+    /* background: transparent; */
+
+}
+#toggle::before{
+    content: '';
+    position: absolute;
+    width: 28px;
+    height: 2px;
+    background-color: #fff;
+    transition: .2s;
+    transform: translateY(-10px);
+    box-shadow: 0px 10px #fff;
+}
+#toggle.cross::before{
+    content: '';
+    transform: translateY(0px) rotate(45deg);
+    box-shadow: 0px 0px #fff; 
+}
+#toggle::after{
+    content: '';
+    position: absolute;
+    width: 28px;
+    height: 2px;
+    background-color: #fff;
+    transition: .2s;
+    transform: translateY(10px);
+}
+#toggle.cross::after{
+    content: '';
+    transform: translateY(0px) rotate(-45deg);
+}
+.navbar .col-2{
+    display: none;
+}
+
+.box{
+    width: 100%;
+    height: 100%;
+    border: 3px dotted grey;
+    padding: 10rem;
+}
+.add-your-text{
+    font-family: 'Cute\ Notes';
+}
+
+
+@media(max-width: 768px){
+    .navbar .col-2{
+        display: block;
+    }
+    .logo{
+        display: none !important;
+    }
+    .nav-container{
+        display: none !important;
+    }
+}
+.nav-icon{
+    display: flex !important;
+}
+ul li {
+    list-style: none;
+}
