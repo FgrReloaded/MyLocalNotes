@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const JWT_TOKEN = "Hello Just checking"
+const JWT_TOKEN = "THIS IS INOTEBOOK APP"
 
 const fetchuser = (req, res, next)=>{
 

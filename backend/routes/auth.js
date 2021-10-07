@@ -10,7 +10,6 @@ var fetchuser = require('../middleware/fetchuser')
 const JWT_TOKEN = "Hello Just checking"
 //ROUTE 1: Create a new user
 router.post('/createuser',[
-    body('username', 'This Username is already in use').isLength({min: 3}),
     body('name', 'Enter a valid Name').isLength({min:3}),
     body('email', 'Enter a valid Email').isEmail(),
     body('password', 'Password must contain 8 characters').isLength({min:8}),
@@ -32,7 +31,6 @@ router.post('/createuser',[
     const secPass = await bcrypt.hash(req.body.password, salt);
     //  create a new user
     user = await User.create({
-        username: req.body.username,
         name: req.body.name,
         email: req.body.email,
         password: secPass,
@@ -61,6 +59,7 @@ router.post('/login',[
   body('email', 'Enter a valid Email').isEmail(),
   body('password', 'Please enter correct password').exists(),
 ], async (req, res) => {
+  let success = false;
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
@@ -70,10 +69,12 @@ router.post('/login',[
   try {
     let user = await User.findOne({email});
     if(!user){
+      success = false;
       return res.status(400).json({error: "Email or password you enter is incorrect."})
     }
     const passwordCompare = await bcrypt.compare(password, user.password);
     if(!passwordCompare){
+      success = false
       return res.status(400).json({error: "Email or password you enter is incorrect."})
     }
     const data={
@@ -82,9 +83,9 @@ router.post('/login',[
       }
     }
     const authToken = jwt.sign(data, JWT_TOKEN)
-
+    success = true;
     // res.json(user)
-    res.json({authToken})
+    res.json({success, authToken})
   } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error Occured") 

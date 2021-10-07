@@ -9,16 +9,14 @@ const { body, validationResult } = require('express-validator');
 //Route 1: Get all notes using GET
 router.get('/fetchallnotes', fetchuser, async (req, res) => {
     try {
-
         const notes = await Note.find({ user: req.user.id })
-
         res.json(notes);
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error Occured")
     }
 })
-// Route 2: Create notes using GET
+// Route 2: Create notes using POST
 router.post('/addnotes', fetchuser, [
     body('title', 'Title must be minimum 1 character').isLength({ min: 1 }),
     body('description', 'Description must contain at least 1 character').isLength({ min: 1 }),
@@ -82,6 +80,25 @@ router.delete('/deletenotes/:id', fetchuser, async (req, res) => {
  
          note = await Note.findByIdAndDelete(req.params.id)
          res.json("Notes Deleted Successfully");
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send("Internal Server Error Occured")
+    }
+})
+
+//Route 5: View Specific note.
+router.get('/viewnotes/:id', fetchuser, async (req, res) => {
+    try {
+         //Find the note to be deleted
+         let note = await Note.findById(req.params.id);
+         if(!note){
+             return res.status(404).send("Notes Not Found");
+         }
+         if(note.user.toString() !== req.user.id){
+             return res.status(401).send("Not Allowed")
+         } 
+         await res.json(note);
+
     } catch (error) {
         console.error(error.message);
         res.status(500).send("Internal Server Error Occured")

@@ -1,0 +1,27 @@
+.h-2{
+    height: 50px !important;
+}
+.hi{
+    width: 10px;
+    height: 10px;
+    border: 2px solid red;
+    margin: 1rem;
+}
+.img{
+    width: 40px;
+    cursor: pointer;
+}
+.row{
+    --bs-gutter-x: 0;
+}
+@media(max-width:550px){
+    .col-md-5{
+        width: 100%;
+    }
+}
+@media (min-width: 576px){
+.modal-1 {
+   max-width: 80%;
+}
+}
+

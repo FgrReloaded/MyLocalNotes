@@ -120,3 +120,12 @@
 ul li {
     list-style: none;
 }
+.active{
+    color: green !important;
+}
+
+@media (min-width: 576px){
+.modal-dialog {
+    max-width: 50%;
+}
+}
