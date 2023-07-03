@@ -4,8 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 
 
 const Login = (props) => {
-    // const host = "https://local-notes.herokuapp.com"
-    const host = "http://localhost:1000"
+    const host = process.env.SITE
     const [loading, setLoading] = useState(false)
     const [lock, setLock] = useState(true)
     let history = useHistory();
