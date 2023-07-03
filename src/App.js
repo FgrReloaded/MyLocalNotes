@@ -9,8 +9,9 @@ import MyNotes from './components/MyNotes';
 import { useState } from 'react';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
-import { toast } from 'react-toastify/dist/react-toastify';
+// import { toast } from 'react-toastify/dist/react-toastify';
 import Forgot from './components/Forgot';
+import { toast } from 'react-toastify';
 
 function App() {
   const showAlert = (message, type) => {
