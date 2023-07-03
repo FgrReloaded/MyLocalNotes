@@ -1,6 +1,10 @@
 {
   "name": "inoteapp",
+<<<<<<< HEAD
   "version": "0.1.0",
+=======
+  "version": "2.0",
+>>>>>>> ceb533131839ea862c35c9696da67214dffbe399
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
