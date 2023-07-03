@@ -1,0 +1,28 @@
+@font-face {
+  font-family: 'addNotes';
+  src: url("./fonts/29.ttf");
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  background: none !important;
+}
+
+::-webkit-scrollbar{
+  width: 5px;
+  transition: 0.5s ease-in-out;
+}
+::-webkit-scrollbar-thumb{
+  background: #000;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
