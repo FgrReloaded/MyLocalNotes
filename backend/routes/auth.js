@@ -6,16 +6,18 @@ var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
 var fetchuser = require('../middleware/fetchuser')
 const nodemailer = require('nodemailer');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: "fgrreloadedprogrammer@gmail.com",
-    pass: "ndzxvamnxlkdoezo"
+    user: process.env.USER,
+    pass: process.env.PASS
   }
 });
 
-const JWT_TOKEN = "THIS IS INOTEBOOK APP"
+const JWT_TOKEN = process.env.JWT_TOKENs
 //ROUTE 1: Create a new user
 router.post('/createuser', [
   body('name', 'Enter a valid Name').isLength({ min: 3 }),
@@ -43,8 +45,7 @@ router.post('/createuser', [
       email: req.body.email,
       password: secPass,
     })
-    // .then(user => res.json(user)).catch(err=> {console.log(err)
-    //   res.json({error: 'enter real', message: err.message})})
+
     const data = {
       user: {
         id: user.id

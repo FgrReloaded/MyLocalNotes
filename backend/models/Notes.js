@@ -23,4 +23,5 @@ const NotesSchema = new Schema({
         type: Date
     }
 });
+mongoose.models = {}
 module.exports = mongoose.model('notes', NotesSchema)

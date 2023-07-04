@@ -1,12 +1,14 @@
-const connectToMongo = require('./db');
+const dbConnect = require('./db');
 const express = require('express');
 const cors = require('cors')
 
-connectToMongo();
+dbConnect();
 const app = express()
 const port = process.env.PORT || 1000
 
-app.use(cors())
+app.use(cors({
+    origin: "*"
+}))
 app.use(express.json())
 // Available Routes
 app.use('/api/auth', require('./routes/auth'))

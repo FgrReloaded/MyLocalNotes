@@ -1,13 +1,46 @@
 const mongoose = require('mongoose');
-
-const mongoURI = process.env.MONGOURI;
-// const mongoURI = "mongodb://localhost:27017/inotebook?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
-
-
-const connectToMongo =  ()=>{
-     mongoose.connect( mongoURI, ()=>{
-        console.log("Database Connected Successfully")
-    })
+const dotenv = require('dotenv');
+dotenv.config();
+const MONGODB_URL = process.env.DB_CONNECT
+if (!MONGODB_URL) {
+    throw new Error(
+        "Please define the MONGODB_URI environment variable inside .env.local"
+    )
 }
-module.exports = connectToMongo;
 
+
+let cached = global.mongoose;
+
+if (!cached) {
+    cached = global.mongoose = {con: null, promise: null}
+}
+
+const dbConnect = async () => {
+    if (cached.conn) {
+        return cached.conn;
+    }
+
+
+// If a connection does not exist, we check if a promise is already in progress. If a promise is already in progress, we wait for it to resolve to get the connection
+    if (!cached.promise) {
+        const opts = {
+            bufferCommands : false
+        };
+
+        cached.promise = mongoose.connect(MONGODB_URL, opts).then((mongoose) => {
+            console.log("Database Connected")
+            return mongoose
+        })
+    }
+
+    try {
+        cached.conn = await cached.promise;
+    } catch (e) {
+        cached.promise = null;
+        throw e;
+    }
+
+    return cached.conn;
+}
+
+module.exports = dbConnect;

@@ -7,7 +7,7 @@ const Forgot = (props) => {
     const [email, setEmail] = useState(null)
     const [code, setCode] = useState(null)
     const [verify, setVerify] = useState(false)
-    const host = process.env.SITE
+    const host = process.env.REACT_APP_VIEW
     const random = () => {
         return Math.floor(100000 + Math.random() * 900000);
     }
