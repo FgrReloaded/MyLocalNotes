@@ -33,6 +33,7 @@ router.post('/createuser', [
     if (user) {
       return res.status(400).json({ error: "This email has already existed. Try Login" })
     }
+    res.json(req.body)
 
     // code for securing password
     const salt = await bcrypt.genSalt(10);
