@@ -32,6 +32,7 @@ router.post('/createuser', [
   // check for already existed user with given email
   try {
     let user = await User.findOne({ email: req.body.email });
+    
     if (user) {
       return res.status(400).json({ error: "This email has already existed. Try Login" })
     }
@@ -53,12 +54,11 @@ router.post('/createuser', [
     }
     const authToken = jwt.sign(data, JWT_TOKEN)
 
-    // res.json(user)
     res.json({ authToken })
     // catch the error and send bad request with message.
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Internal Server Error Occured")
+    res.status(500).json({err: error.message})
   }
 })
 
