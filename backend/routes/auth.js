@@ -27,7 +27,6 @@ router.post('/createuser', [
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
-  res.status(200).json({success:true})
   // check for already existed user with given email
   try {
     let user = await User.findOne({ email: req.body.email });
@@ -44,6 +43,7 @@ router.post('/createuser', [
       email: req.body.email,
       password: secPass,
     })
+    console.log(user)
     // .then(user => res.json(user)).catch(err=> {console.log(err)
     //   res.json({error: 'enter real', message: err.message})})
     const data = {
