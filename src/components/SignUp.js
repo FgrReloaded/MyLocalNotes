@@ -10,6 +10,7 @@ const SignUp = (props) => {
     let history = useHistory();
     const [credential, setCredential] = useState({ name: "", email: "", password: "", cpassword: "" })
     const handleSubmit = async (e) => {
+        console.log(host)
         e.preventDefault();
         setLoading(true)
         const { name, email, password, cpassword } = credential;
