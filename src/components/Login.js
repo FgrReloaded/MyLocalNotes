@@ -4,7 +4,7 @@ import { useHistory, Link } from 'react-router-dom';
 
 
 const Login = (props) => {
-    const host = process.env.REACT_APP_SITE
+    const host = process.env.REACT_APP_HOST
     const [loading, setLoading] = useState(false)
     const [lock, setLock] = useState(true)
     let history = useHistory();
