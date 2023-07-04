@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const JWT_TOKEN = process.env.JWT_TOKENs
+const JWT_TOKEN = process.env.JWT_TOKEN
 //ROUTE 1: Create a new user
 router.post('/createuser', [
   body('name', 'Enter a valid Name').isLength({ min: 3 }),
