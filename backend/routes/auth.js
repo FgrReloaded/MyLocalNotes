@@ -43,7 +43,7 @@ router.post('/createuser', [
       email: req.body.email,
       password: secPass,
     })
-    console.log(user)
+    
     // .then(user => res.json(user)).catch(err=> {console.log(err)
     //   res.json({error: 'enter real', message: err.message})})
     const data = {
@@ -58,7 +58,7 @@ router.post('/createuser', [
     // catch the error and send bad request with message.
   } catch (error) {
     console.error(error.message);
-    res.status(500).send("Internal Server Error Occured")
+    res.status(500).send({err: error.message})
   }
 })
 
