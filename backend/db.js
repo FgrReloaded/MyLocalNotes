@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const mongoURI = process.env.MONGOURI;
-// const mongoURI = "mongodb://localhost:27017/inotebook?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false";
+// const mongoURI = "mongodb+srv://fgrreloaded:f@g#r$14@bevegan.f4yxvfn.mongodb.net/inote?retryWrites=true&w=majority";
 
 
 const connectToMongo =  ()=>{
