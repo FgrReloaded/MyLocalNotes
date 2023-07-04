@@ -10,7 +10,6 @@ const SignUp = (props) => {
     let history = useHistory();
     const [credential, setCredential] = useState({ name: "", email: "", password: "", cpassword: "" })
     const handleSubmit = async (e) => {
-        console.log(host)
         e.preventDefault();
         setLoading(true)
         const { name, email, password, cpassword } = credential;
@@ -20,6 +19,7 @@ const SignUp = (props) => {
             return
         }
         const response = await fetch(`${host}/api/auth/createuser`, {
+            mode: 'no-cors',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
