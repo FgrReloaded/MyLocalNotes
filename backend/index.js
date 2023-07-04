@@ -7,9 +7,6 @@ const app = express()
 const port = process.env.PORT || 1000
 
 app.use(cors())
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*")
-}) 
 app.use(express.json())
 // Available Routes
 app.use('/api/auth', require('./routes/auth'))
