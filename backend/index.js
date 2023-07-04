@@ -12,9 +12,6 @@ app.use((req, res, next) => {
 }) 
 app.use(express.json())
 // Available Routes
-app.use("/",(req,res)=>{
-  res.send({success:true})
-})
 app.use('/api/auth', require('./routes/auth'))
 app.use('/api/notes', require('./routes/notes'))
 
