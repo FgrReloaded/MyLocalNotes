@@ -53,7 +53,6 @@ router.post('/createuser', [
     }
     const authToken = jwt.sign(data, JWT_TOKEN)
 
-    // res.json(user)
     res.json({ authToken })
     // catch the error and send bad request with message.
   } catch (error) {
