@@ -1,5 +1,8 @@
 const jwt = require('jsonwebtoken');
-const JWT_TOKEN = "THIS IS INOTEBOOK APP"
+const dotenv = require('dotenv');
+dotenv.config();
+
+const JWT_TOKEN = process.env.JWT_TOKEN
 
 const fetchuser = (req, res, next)=>{
 

@@ -2,11 +2,7 @@ import React, { useState } from "react";
 import NoteContext from "./noteContext";
 
 const NoteState = (props) => {
-<<<<<<< HEAD
     const host = process.env.REACT_APP_VIEW
-=======
-    const host = process.env.REACT_APP_HOST
->>>>>>> 9ec6843b1263b30d9dc2682fcac72a38bb8011ec
     const notesInitial = [];
     const userInitial = [];
     const [notes, setNotes] = useState(notesInitial);

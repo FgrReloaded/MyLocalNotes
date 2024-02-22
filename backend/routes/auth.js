@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-const JWT_TOKEN = process.env.JWT_TOKENs
+const JWT_TOKEN = process.env.JWT_TOKEN
 //ROUTE 1: Create a new user
 router.post('/createuser', [
   body('name', 'Enter a valid Name').isLength({ min: 3 }),
@@ -32,34 +32,35 @@ router.post('/createuser', [
   // check for already existed user with given email
   try {
     let user = await User.findOne({ email: req.body.email });
-    
-    if (user) {
-      return res.status(400).json({ error: "This email has already existed. Try Login" })
-    }
+    let userName = await User.findOne({ username: req.body.username })
 
-    // code for securing password
-    const salt = await bcrypt.genSalt(10);
-    const secPass = await bcrypt.hash(req.body.password, salt);
-    //  create a new user
-    user = await User.create({
-      name: req.body.name,
-      email: req.body.email,
-      password: secPass,
-    })
+if (user) {
+  return res.status(400).json({ error: "This email has already existed. Try Login" })
+}
 
-    const data = {
-      user: {
-        id: user.id
-      }
-    }
-    const authToken = jwt.sign(data, JWT_TOKEN)
+// code for securing password
+const salt = await bcrypt.genSalt(10);
+const secPass = await bcrypt.hash(req.body.password, salt);
+//  create a new user
+user = await User.create({
+  name: req.body.name,
+  email: req.body.email,
+  password: secPass,
+})
 
-    res.json({ authToken })
+const data = {
+  user: {
+    id: user.id
+  }
+}
+const authToken = jwt.sign(data, JWT_TOKEN)
+
+res.json({ authToken })
     // catch the error and send bad request with message.
   } catch (error) {
-    console.error(error.message);
-    res.status(500).json({err: error.message})
-  }
+  console.error(error.message);
+  res.status(500).json({ err: error.message })
+}
 })
 
 
