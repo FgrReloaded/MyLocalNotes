@@ -19,7 +19,6 @@ const SignUp = (props) => {
             return
         }
         const response = await fetch(`${host}/api/auth/createuser`, {
-            mode: 'no-cors',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
